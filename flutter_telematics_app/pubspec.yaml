@@ -1,0 +1,36 @@
+name: flutter_telematics_app
+description: Aplicativo de telemetria Blue Telematics via Bluetooth
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Bluetooth
+  flutter_blue_plus: ^1.31.0
+  flutter_bluetooth_serial: ^0.4.0
+  
+  # State Management
+  get: ^4.6.6
+  
+  # Permissões
+  permission_handler: ^11.0.1
+  
+  # UI
+  cupertino_icons: ^1.0.6
+  
+  # Utilities
+  intl: ^0.18.1
+  shared_preferences: ^2.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true

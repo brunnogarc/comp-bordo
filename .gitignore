@@ -1,0 +1,41 @@
+# Flutter/Dart
+flutter_telematics_app/.dart_tool/
+flutter_telematics_app/build/
+flutter_telematics_app/.flutter-plugins
+flutter_telematics_app/.flutter-plugins-dependencies
+flutter_telematics_app/.packages
+flutter_telematics_app/pubspec.lock
+
+# Android
+flutter_telematics_app/android/app/build/
+flutter_telematics_app/android/build/
+flutter_telematics_app/android/.gradle/
+flutter_telematics_app/android/local.properties
+flutter_telematics_app/android/gradlew
+flutter_telematics_app/android/gradlew.bat
+flutter_telematics_app/android/gradle/wrapper/
+
+# iOS
+flutter_telematics_app/ios/Flutter/flutter_export_environment.sh
+flutter_telematics_app/ios/Pods/
+flutter_telematics_app/ios/.symlinks/
+flutter_telematics_app/ios/Flutter/Generated.xcconfig
+flutter_telematics_app/ios/Runner/GeneratedPluginRegistrant.*
+
+# Java (aplicação Java de configuração)
+_docs/AG-TELEMATICS-DECODER/AGFLEET-TELEMATICS-DECODER/bin/
+*.class
+_docs/*.exe
+_docs/*.jar
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
