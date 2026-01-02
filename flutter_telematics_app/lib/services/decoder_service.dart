@@ -71,13 +71,22 @@ class DecoderService {
     if (data.length < startByte + 8) return "N/A";
     
     String result = data.substring(startByte, startByte + 8);
+    
+    // Log detalhado para debug
+    print('  ⏱️ HORIMETRO DEBUG:');
+    print('     Posição no hex: $startByte (byte 68)');
+    print('     8 caracteres lidos: $result');
+    
     if (result == "FFFFFFFF") {
-      print('  ⏱️ Horímetro: hex=$result → N/A');
-      return "0.0";
+      print('     Valor: N/A (todos FF)');
+      return "N/A";
     }
+    
     int hexValue = int.parse(result, radix: 16);
     double tmp = hexValue * 0.05;
-    print('  ⏱️ Horímetro: hex=$result ($hexValue) → ${tmp.toStringAsFixed(2)} h');
+    print('     Decimal: $hexValue');
+    print('     Cálculo: $hexValue × 0.05 = $tmp h');
+    
     return tmp.toStringAsFixed(2);
   }
 
@@ -241,18 +250,18 @@ class DecoderService {
       Map<String, bool> statusFlags = decodeStatusFlags(hexData);
       print('  🚩 Status: Pós-chave=${statusFlags['posChave']}, Motor=${statusFlags['motor']}, GPS=${statusFlags['gpsValido']}');
       
-      // Posições dos bytes conforme AgDecodeTelematics
-      result['velocidade'] = decodeVelocidade(hexData, 184); // Byte 92
-      result['bateria'] = decodeBateria(hexData, 128); // Byte 64
-      result['rpm'] = decodeRPM(hexData, 192); // Byte 96
-      result['odometro'] = decodeOdometro(hexData, 168); // Byte 84
-      result['horimetro'] = decodeHorimetro(hexData, 136); // Byte 68
-      result['nivelCombustivel'] = decodeNivelCombustivel(hexData, 276); // Byte 138
-      result['torqueMotor'] = decodeTorqueMotor(hexData, 204); // Byte 102
-      result['temperaturaMotor'] = decodeTemperaturaMotor(hexData, 240); // Byte 120
-      result['latitude'] = decodeLatitude(hexData, 32); // substring(32,40) = Bytes 16-19
-      result['longitude'] = decodeLongitude(hexData, 40); // substring(40,48) = Bytes 20-23
-      result['bussola'] = decodeBussola(hexData, 56); // substring(56,60) = Bytes 28-29
+      // Posições conforme AgDecodeTelematics.java (índices da string, não bytes × 2)
+      result['velocidade'] = decodeVelocidade(hexData, 92); // substring(92, 96)
+      result['bateria'] = decodeBateria(hexData, 64); // substring(64, 68)
+      result['rpm'] = decodeRPM(hexData, 96); // substring(96, 100)
+      result['odometro'] = decodeOdometro(hexData, 84); // substring(84, 92)
+      result['horimetro'] = decodeHorimetro(hexData, 68); // substring(68, 76)
+      result['nivelCombustivel'] = decodeNivelCombustivel(hexData, 138); // substring(138, 140)
+      result['torqueMotor'] = decodeTorqueMotor(hexData, 102); // substring(102, 104)
+      result['temperaturaMotor'] = decodeTemperaturaMotor(hexData, 120); // substring(120, 122)
+      result['latitude'] = decodeLatitude(hexData, 32); // substring(32, 40)
+      result['longitude'] = decodeLongitude(hexData, 40); // substring(40, 48)
+      result['bussola'] = decodeBussola(hexData, 56); // substring(56, 60)
       result['ignicao'] = decodeIgnicao(hexData, 22); // Byte 11 (posição 22)
     } catch (e) {
       print('Erro ao decodificar: $e');
